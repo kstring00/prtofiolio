@@ -1,0 +1,260 @@
+.page {
+  max-width: 62rem;
+  margin: 0 auto;
+  padding: clamp(3rem, 8vw, 7rem) clamp(1.25rem, 5vw, 3rem) 6rem;
+}
+
+/* ---------- masthead ---------- */
+
+.masthead {
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: clamp(2.5rem, 6vw, 4rem);
+}
+
+.eyebrow {
+  margin: 0 0 1.25rem;
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(2.25rem, 6vw, 3.75rem);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  max-width: 20ch;
+}
+
+.lede {
+  margin: 1.5rem 0 0;
+  max-width: 52ch;
+  color: var(--muted);
+  font-size: 1.0625rem;
+}
+
+.cta {
+  display: inline-block;
+  margin-top: 2.25rem;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--amber-dim);
+  border-radius: 2px;
+  color: var(--amber);
+  text-decoration: none;
+  font-size: 0.9375rem;
+  transition: border-color 160ms ease, background-color 160ms ease;
+}
+
+.cta:hover {
+  border-color: var(--amber);
+  background: rgba(217, 164, 65, 0.07);
+}
+
+/* ---------- unfinished-content notice ---------- */
+
+.gaps {
+  margin-top: 2.5rem;
+  padding: 1.25rem 1.5rem;
+  border-left: 2px solid var(--amber);
+  background: var(--ink-raised);
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.gapsTitle {
+  margin: 0 0 0.5rem;
+  color: var(--amber);
+}
+
+.gaps ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+/* ---------- sections ---------- */
+
+.section {
+  margin-top: clamp(3.5rem, 9vw, 6rem);
+}
+
+.sectionTitle {
+  margin: 0 0 2rem;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  letter-spacing: -0.005em;
+}
+
+.sectionLede {
+  margin: -1rem 0 2.5rem;
+  max-width: 54ch;
+  color: var(--muted);
+}
+
+/* ---------- tiers ---------- */
+
+.tiers {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+
+.tier {
+  background: var(--ink);
+  padding: 2rem 1.75rem 2.25rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.tierName {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.price {
+  margin: 0.5rem 0 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 2.75rem;
+  line-height: 1;
+  color: var(--amber);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.tierDetail {
+  margin: 1rem 0 0;
+  font-size: 0.9375rem;
+  color: var(--paper);
+}
+
+.includes {
+  margin: 1.25rem 0 0;
+  padding-left: 1.1rem;
+  font-size: 0.9375rem;
+  color: var(--muted);
+}
+
+.includes li {
+  margin-bottom: 0.4rem;
+}
+
+.tierCta {
+  margin-top: auto;
+  padding-top: 1.75rem;
+  font-size: 0.9375rem;
+  color: var(--amber);
+  text-decoration: none;
+  border-bottom: 0;
+}
+
+.tierCta:hover {
+  text-decoration: underline;
+}
+
+/* ---------- timeline ---------- */
+
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.week {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: 1.5rem;
+  padding: 1.75rem 0;
+  border-top: 1px solid var(--rule);
+}
+
+.week:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+
+.weekNumber {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--amber);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.weekLabel {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-bottom: 0.35rem;
+}
+
+.weekName {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.weekDetail {
+  margin: 0.4rem 0 0;
+  color: var(--muted);
+  font-size: 0.9375rem;
+  max-width: 56ch;
+}
+
+/* ---------- requirements ---------- */
+
+.requirements {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+
+.requirement {
+  padding: 1.5rem;
+  background: var(--ink-raised);
+  border-left: 2px solid var(--amber-dim);
+}
+
+.requirementName {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.requirementDetail {
+  margin: 0.4rem 0 0;
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
+.pending {
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* ---------- footer ---------- */
+
+.footer {
+  margin-top: clamp(4rem, 10vw, 7rem);
+  padding-top: 2rem;
+  border-top: 1px solid var(--rule);
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
+@media (max-width: 34rem) {
+  .week {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+}

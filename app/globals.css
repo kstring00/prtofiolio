@@ -1,0 +1,59 @@
+/* Palette: warm amber on near-black. The drive itself is a pale daylight
+   scene; the instrument surfaces are the dark half of the pairing. */
+:root {
+  --ink: #0d0b09;
+  --ink-raised: #16130f;
+  --rule: #2a251e;
+  --paper: #ece6da;
+  --muted: #8f8676;
+  --amber: #d9a441;
+  --amber-dim: #7e6330;
+
+  /* Road-scene values, shared with the 3D stages so the fallback and the
+     drive never disagree about what colour the world is. */
+  --fog: #b9b2a6;
+
+  --font-display: var(--font-display), Georgia, "Times New Roman", serif;
+  --font-body: var(--font-body), system-ui, -apple-system, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--amber);
+  text-underline-offset: 0.2em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
