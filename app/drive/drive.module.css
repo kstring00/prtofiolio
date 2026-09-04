@@ -258,3 +258,127 @@
     gap: 0.75rem;
   }
 }
+
+/* ---------- launcher ---------- */
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2.25rem;
+}
+
+.actions .cta {
+  margin-top: 0;
+}
+
+.start {
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  background: transparent;
+  color: var(--paper);
+  font: inherit;
+  font-size: 0.9375rem;
+  cursor: pointer;
+  transition: border-color 160ms ease, color 160ms ease;
+}
+
+.start:hover {
+  border-color: var(--amber-dim);
+  color: var(--amber);
+}
+
+.reducedMotion {
+  margin: 0;
+  max-width: 40ch;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+/* ---------- the drive ---------- */
+
+.stage {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: var(--fog);
+}
+
+.stage canvas {
+  display: block;
+}
+
+.stageChrome {
+  position: absolute;
+  inset: auto 0 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem clamp(1rem, 4vw, 2rem);
+  /* Stage 4 replaces this strip with the real dashboard. */
+  background: linear-gradient(to top, rgba(13, 11, 9, 0.92), transparent);
+}
+
+.readout {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  color: var(--amber);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.exit {
+  padding: 0.6rem 1.1rem;
+  border: 1px solid var(--amber-dim);
+  border-radius: 2px;
+  background: rgba(13, 11, 9, 0.6);
+  color: var(--amber);
+  font: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.exit:hover {
+  border-color: var(--amber);
+}
+
+/* ---------- terms ---------- */
+
+.terms {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
+.carePlan {
+  margin: 0 0 0.75rem;
+  color: var(--paper);
+}
+
+.carePlanName {
+  color: var(--paper);
+}
+
+.carePlanPrice {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  color: var(--amber);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.termsLine {
+  margin: 0 0 0.4rem;
+}
+
+.from {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  color: var(--muted);
+  vertical-align: 0.35em;
+  margin-right: 0.15em;
+}

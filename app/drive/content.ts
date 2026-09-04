@@ -14,7 +14,7 @@
  * One number, three consumers. Nothing else needs to know about ordering.
  */
 
-export type TierId = "starter" | "standard" | "full";
+export type TierId = "one-page" | "small-site" | "editable";
 
 interface SignBase {
   /** Stable across content edits — used for log keys and scrub targets. */
@@ -33,6 +33,12 @@ export interface ExitSign extends SignBase {
   tier: TierId;
   /** Whole US dollars. Rendered with the display face. */
   price: number;
+  /**
+   * Every tier is quoted as a floor, not a fixed fee — scope moves the final
+   * number. The word matters commercially, so it is data rather than something
+   * each consumer remembers to prepend.
+   */
+  from: boolean;
   includes: string[];
 }
 
@@ -56,12 +62,18 @@ export interface CautionSign extends SignBase {
 
 export type DriveSign = ExitSign | MarkerSign | CautionSign;
 
-/** Where the road ends. The fork has one lane per tier. */
-export const TIER_ORDER: readonly TierId[] = ["starter", "standard", "full"];
+/** Where the road ends. The fork has one lane per tier, in this order. */
+export const TIER_ORDER: readonly TierId[] = [
+  "one-page",
+  "small-site",
+  "editable",
+];
 
 /**
  * Contact route for the inquiry. `INQUIRY_URL` is the external intake form;
  * until it is set, the mailto is a working fallback rather than a dead button.
+ * The chosen lane rides along as `?tier=` so the fork at the end of the drive
+ * still means something after the visitor leaves the page.
  */
 export const INQUIRY_EMAIL = "stringham00@gmail.com";
 export const INQUIRY_URL = "";
@@ -70,9 +82,10 @@ export function inquiryHref(tier?: TierId): string {
   if (INQUIRY_URL) {
     return tier ? `${INQUIRY_URL}?tier=${tier}` : INQUIRY_URL;
   }
-  const subject = tier
-    ? `Website inquiry — ${tier} tier`
-    : "Website inquiry";
+  const label = tier
+    ? EXIT_SIGNS.find((s) => s.tier === tier)?.label
+    : undefined;
+  const subject = label ? `Website inquiry — ${label}` : "Website inquiry";
   return `mailto:${INQUIRY_EMAIL}?subject=${encodeURIComponent(subject)}`;
 }
 
@@ -82,41 +95,60 @@ export const PROJECT_WEEKS = 3;
 /**
  * The road, in order.
  *
- * Prices and the three-week timeline are real. The naming and the prose are
- * not written yet, and are deliberately left empty rather than filled with
- * plausible placeholder copy — empty renders as an obvious gap, whereas
+ * The three exits are real and quoted. The week markers exist structurally but
+ * their copy is not written yet, and is left empty rather than filled with
+ * plausible placeholder prose — empty renders as an obvious gap, whereas
  * plausible copy ships by accident.
  */
 export const SIGNS: DriveSign[] = [
   {
     kind: "exit",
-    id: "tier-starter",
+    id: "tier-one-page",
     distance: 120,
-    label: "",
-    detail: "",
-    tier: "starter",
-    price: 500,
-    includes: [],
+    label: "One page",
+    detail:
+      "Single scrolling page, mobile-ready, contact form, live on your domain.",
+    tier: "one-page",
+    price: 1200,
+    from: true,
+    includes: [
+      "Single scrolling page",
+      "Mobile-ready",
+      "Contact form",
+      "Live on your domain",
+    ],
   },
   {
     kind: "exit",
-    id: "tier-standard",
+    id: "tier-small-site",
     distance: 220,
-    label: "",
-    detail: "",
-    tier: "standard",
-    price: 1000,
-    includes: [],
+    label: "Small site",
+    detail:
+      "Four to six pages, contact form, basic search setup, live on your domain.",
+    tier: "small-site",
+    price: 2800,
+    from: true,
+    includes: [
+      "Four to six pages",
+      "Contact form",
+      "Basic search setup",
+      "Live on your domain",
+    ],
   },
   {
     kind: "exit",
-    id: "tier-full",
+    id: "tier-editable",
     distance: 320,
-    label: "",
-    detail: "",
-    tier: "full",
-    price: 1500,
-    includes: [],
+    label: "Site you can edit",
+    detail:
+      "Everything above, plus a simple editor so you change your own text and photos.",
+    tier: "editable",
+    price: 4500,
+    from: true,
+    includes: [
+      "Everything in Small site",
+      "A simple editor so you change your own text and photos",
+    ],
   },
   {
     kind: "marker",
@@ -143,6 +175,26 @@ export const SIGNS: DriveSign[] = [
     week: 3,
   },
 ];
+
+/**
+ * Ongoing, not a lane. The road forks three ways at the end and this is a
+ * recurring fee rather than a project, so it rides alongside the tiers instead
+ * of becoming a fourth exit.
+ */
+export const CARE_PLAN = {
+  label: "Care plan",
+  price: 125,
+  cadence: "month" as const,
+  detail: "Hosting, updates, backups, small changes.",
+};
+
+/** Commercial terms. Quoted on the static page; not yet placed on the road. */
+export const PAYMENT_TERMS = {
+  deposit:
+    "50% deposit to start, 50% at launch.",
+  method:
+    "ACH by default — card fees on a deposit this size run about $65 against $5 for ACH.",
+};
 
 export const EXIT_SIGNS = SIGNS.filter(
   (s): s is ExitSign => s.kind === "exit",
